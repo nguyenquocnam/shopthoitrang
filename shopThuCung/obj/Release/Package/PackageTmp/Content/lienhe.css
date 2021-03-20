@@ -1,0 +1,43 @@
+#map{
+	width: 100%;
+	height: 500px;
+	background: pink;
+}
+#thongtin-lienhe{
+	display: flex;
+	margin-top: 20px;
+}
+#form-lienhe{
+	width: 50%;
+}
+#form-lienhe input{
+	width: 80%;
+	height: 40px;
+	border-radius: 10px;
+	border: 1px solid orange;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	overflow:hidden;
+}
+#form-lienhe input:focus{
+	box-shadow: 0px 0px 10px gray;
+}
+#form-lienhe button{
+	width: 80%;
+	height: 40px;
+	border: 2px solid orange;
+	background: orange;
+	cursor: pointer;
+
+}
+#form-lienhe button:hover{
+	background: #DF7401;
+	border: 2px solid #DF7401;
+}
+#diachi-lienhe{
+	width: 50%;
+}
+#diachi-lienhe li{
+	list-style-type: disc;
+	margin:10px 0px;
+}

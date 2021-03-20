@@ -1,0 +1,117 @@
+﻿@model PagedList.IPagedList<Shopthucung.Models.c_sp>
+@using PagedList.Mvc
+@using Shopthucung.Models
+@{
+    ViewBag.Title = "listsp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/Content/listSP1.css">
+    <link rel="stylesheet" type="text/css" href="\Content\chitiet.css">
+    <link rel="stylesheet" type="text/css" href="\Content\rplist.css">
+}
+@section scripts{
+   
+}
+@section Menu{
+    @Html.Partial("MenuPartialView", (menuDF)(ViewBag.listMenu))
+}
+@section MenuMobie{
+    @Html.Partial("MenuMBPartialView", (menuDF)(ViewBag.listMenu))
+}
+@if (ViewBag.sp.Count > 0)
+{
+    <div id="list-cho">
+        <div class="url">
+            <p>
+                <span class="title-url">
+                    @Html.ActionLink("Trang chủ", "index", "Home")
+                </span>
+                /
+                <span class="title-url">
+
+                    @foreach (var item in ViewBag.loaiSP)
+                    {
+                        if (item.MaLoaiSP == ViewBag.sp[0].MaLoaiSP)
+                        {
+                            <a href="/Home/listsp" title="">@item.tenLoai</a>
+                            break;
+                        }
+                    }
+                </span>
+            </p>
+        </div>
+
+        <div class="list-sell">
+            @{
+                String id = null;
+                foreach (var item in ViewBag.sp)
+                {
+                    if (id != item.MaSp)
+                    {
+                        bool kt = false;
+                        <div class="sp">
+                            <a href="/Chi-Tiet-San-Pham/@item.MaPL/@item.MaSp" title="">
+                                <div class="img-sp">
+
+                                    @foreach (var item1 in ViewBag.sp)
+                                    {
+                                        if (kt == false && item1.MaSp == item.MaSp)
+                                        {
+
+                                            <div class='anh-1'>
+                                                <img src="@item1.url" alt="" width="100%" height="100%">
+                                            </div>
+                                            kt = true;
+                                        }
+                                        else if (item1.MaSp == item.MaSp && kt == true)
+                                        {
+
+                                            <div class='anh-2'>
+                                                <img src="@item1.url" alt="" width="100%" height="100%">
+
+                                            </div>
+
+                                            break;
+                                        }
+
+                                    }
+
+
+
+                                </div>
+                                <div class='name-sp'>
+                                    <h4 style="text-align:center">@item.tenSP-@item.MaSp</h4>
+                                    <h5 style="color:orangered;text-align:right">@item.price ₫</h5>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    id = item.MaSp;
+
+                }
+            }
+
+
+        </div>
+        <div class="page">
+            <ul>
+                @if ((int)ViewBag.kiemTra == 1)
+                {
+                    @Html.PagedListPager(Model, page => Url.Action("/danh-sach-san-pham/" + ViewBag.sp[0].MaLoaiSP, new { page }))
+                }
+                else
+                {
+                    @Html.PagedListPager(Model, page => Url.Action("/danh-sach-san-pham/" + ViewBag.sp[0].MaLoaiSP + "/" + ViewBag.sp[0].MaPL, new { page }))
+                }
+
+            </ul>
+        </div>
+
+
+    </div>
+}else{
+        <h1 style="text-align:center;">SẢN PHẨM HIỆN KHÔNG CÓ SẴN</h1>
+                }
+
+

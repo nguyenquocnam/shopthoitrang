@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyShopThuCungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QuanLyShopThuCung.dbo.img_sp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="img_sp">
+    <Key>
+      <PropertyRef Name="MaIMG" />
+      <PropertyRef Name="loai" />
+    </Key>
+    <Property Name="MaIMG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaSp" Type="varchar" MaxLength="50" />
+    <Property Name="url" Type="nvarchar" MaxLength="400" />
+    <Property Name="loai" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoaiSP">
+    <Key>
+      <PropertyRef Name="MaLoaiSP" />
+    </Key>
+    <Property Name="MaLoaiSP" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tenLoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhanLoaiSP">
+    <Key>
+      <PropertyRef Name="MaPL" />
+    </Key>
+    <Property Name="MaPL" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaLoaiSP" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenPhanLoai" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSp" />
+    </Key>
+    <Property Name="MaSp" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tenSP" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaPL" Type="varchar" MaxLength="50" />
+    <Property Name="mausac" Type="nvarchar" MaxLength="50" />
+    <Property Name="gioitinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="tuoi" Type="nvarchar" MaxLength="50" />
+    <Property Name="tinhtrang" Type="nvarchar" MaxLength="50" />
+    <Property Name="timvacxin" Type="int" />
+    <Property Name="taygiun" Type="int" />
+    <Property Name="xuatxu" Type="nvarchar" MaxLength="100" />
+    <Property Name="ngaythem" Type="date" />
+    <Property Name="hot" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="MaBaiViet" />
+    </Key>
+    <Property Name="MaBaiViet" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TieuDe" Type="text" />
+    <Property Name="ngaydang" Type="date" />
+    <Property Name="mota" Type="text" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="TaiKhoan" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MatKhau" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_img_sp_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1" />
+    <End Role="img_sp" Type="Self.img_sp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSp" />
+      </Principal>
+      <Dependent Role="img_sp">
+        <PropertyRef Name="MaSp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhanLoaiSP_LoaiSP">
+    <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="1" />
+    <End Role="PhanLoaiSP" Type="Self.PhanLoaiSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSP">
+        <PropertyRef Name="MaLoaiSP" />
+      </Principal>
+      <Dependent Role="PhanLoaiSP">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_PhanLoaiSP">
+    <End Role="PhanLoaiSP" Type="Self.PhanLoaiSP" Multiplicity="1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PhanLoaiSP">
+        <PropertyRef Name="MaPL" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaSp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyShopThuCungModelStoreContainer">
+    <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhanLoaiSP" EntityType="Self.PhanLoaiSP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="img_sp" EntityType="Self.img_sp" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [img_sp].[MaIMG] AS [MaIMG], 
+    [img_sp].[MaSp] AS [MaSp], 
+    [img_sp].[url] AS [url], 
+    [img_sp].[loai] AS [loai]
+    FROM [dbo].[img_sp] AS [img_sp]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_img_sp_SanPham" Association="Self.FK_img_sp_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="img_sp" EntitySet="img_sp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhanLoaiSP_LoaiSP" Association="Self.FK_PhanLoaiSP_LoaiSP">
+      <End Role="LoaiSP" EntitySet="LoaiSP" />
+      <End Role="PhanLoaiSP" EntitySet="PhanLoaiSP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_PhanLoaiSP" Association="Self.FK_SanPham_PhanLoaiSP">
+      <End Role="PhanLoaiSP" EntitySet="PhanLoaiSP" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

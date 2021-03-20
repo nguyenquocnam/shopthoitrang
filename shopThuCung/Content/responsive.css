@@ -1,0 +1,89 @@
+@media  screen and (max-width: 1280px)
+{
+	.menu-chon-sp{
+			font-size: 9px;	
+	}
+	.link-lk{
+		margin-right: 10px;
+	}
+}
+@media  screen and (max-width: 1040px)
+{
+	.list-SP{
+			margin-right: 30px;
+	}
+}
+@media  screen and (max-width: 768px)
+{
+	.container>div{
+		padding:0px;
+	}
+
+	.search_txt{
+		display: none;
+	}
+	.search{
+		display: flex;
+	}
+	#icon-mn-mb{
+		
+		padding-top: 8px;
+		margin-left: 10px;
+		display: block;
+		font-size: 40px;
+	}
+	.logo{
+		float: none;
+		padding-left: 30%;
+	}
+	.menu{
+		display: none;
+	}
+	.chung-nhan{
+		display: none;
+	}
+	.show-bn{
+		width: 100%;
+	}
+	.show-bn .btn-bn,.btn-cr{
+		display: none;
+	}
+
+	/*========*/
+
+	.loai-sp .menu-chon-sp{
+		display: none;
+	}
+	.box-mb{
+		display: flex;
+		overflow-x: scroll;
+	}
+	.box{
+		display: none;
+	}
+	#email{
+		width: 100%	;}
+	#giao-hang{
+		margin: auto;
+	}
+	#footer-top{
+		display: block;
+	}
+	#ve-chung-toi{
+		display: none;
+	}
+	#thong-tin-lien-he{
+		margin-right: 0px;
+	}
+	#icon-bank{
+		margin:0px;
+	}
+
+}
+@media  screen and (max-width: 428px)
+{
+
+	.box-mb .sp{
+		width: 50%;
+	}
+}

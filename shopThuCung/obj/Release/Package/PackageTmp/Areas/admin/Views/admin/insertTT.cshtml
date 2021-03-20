@@ -1,0 +1,60 @@
+﻿@model List<Shopthucung.Models.PhanLoaiSP>
+@{
+    ViewBag.Title = "insertSP";
+    Layout = "~/Areas/admin/Views/Shared/layoutAdmin.cshtml";
+}
+
+@section script{
+    <script src="~/assets/ckeditor/ckeditor.js"></script>
+    <script src="~/assets/ckfinder/ckfinder.js"></script>
+    <script src="~/assets/jsAdmin/adminInTT.js"></script>
+}
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i>Thêm Tin Tức</h4>
+            <form class="form-horizontal style-form" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Mã Bài Viết</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Nhập mã bài viết" name="MaBaiViet" id="MaBaiViet">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tiêu Đề</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Nhập Tên Sản Phẩm" name="TieuDe" id="TieuDe">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Mô tả ngắn</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="motangan" id="motangan" placeholder="Nhập mô tả ngắn">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Mô tả</label>
+                    <div class="col-sm-10">
+                        <textarea id="mota" name="mota">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Ảnh Mô Tả(1 ảnh)</label>
+                    <div class="col-sm-10">
+                        <div id="imagelist1">
+                        </div>
+                        <a href="#" class="btn btn-theme" id="imgDFChoose">SELECT IMAGE</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button id="saveSP" class="btn btn-primary" type="submit">Thêm</button>
+                        <a href="/admin/admin/SanPham" class="btn btn-primary">Thoát</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

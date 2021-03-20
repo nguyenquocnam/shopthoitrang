@@ -1,0 +1,180 @@
+﻿@model List<Shopthucung.Models.PhanLoaiSP>
+
+@{
+        ViewBag.Title = "editSP";
+    Layout = "~/Areas/admin/Views/Shared/layoutAdmin.cshtml";
+}
+
+@section script{
+    <script src="~/assets/ckeditor/ckeditor.js"></script>
+    <script src="~/assets/ckfinder/ckfinder.js"></script>
+    <script src="~/assets/jsAdmin/adminEdit1.js"></script>
+    @{
+        string mota1 = Shopthucung.Areas.admin.code.HtmltoW.replaceC(@ViewBag.sp[0].mota);
+        <script>
+            window.onload = function () {
+            console.log($('#testMota').val());
+            CKEDITOR.instances['mota'].focus();
+            CKEDITOR.instances['mota'].insertHtml($('#testMota').val());
+        }
+        </script>
+    }
+
+}
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i>Sửa Sản Phẩm</h4>
+            <form class="form-horizontal style-form" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Mã Sản Phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Nhập mã Sản Phẩm" name="MaSp" id="MaSp" disabled value="@ViewBag.sp[0].MaSp">
+                        <input type="hidden" value="@ViewBag.sp[0].ngaythem" id="ngaythem" />
+                        <input type="hidden" value="@ViewBag.sp[0].mota" id="testMota" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tên Sản Phẩm</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Nhập Tên Sản Phẩm" name="tenSP" id="TenSp" value="@ViewBag.sp[0].tenSP">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Phân Loại</label>
+                    <div class="col-sm-10">
+                        <select name="Loai" id="loai">
+                            @foreach (var item in Model)
+                            {
+                                if (Convert.ToString(ViewBag.sp[0].MaPL) == Convert.ToString(item.MaPL))
+                                {
+                                    <option value="@item.MaPL" selected>@item.TenPhanLoai</option>
+                                }
+
+                                else
+                                {
+                                    <option value="@item.MaPL">@item.TenPhanLoai</option>
+                                }
+
+
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Màu Sắc</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Nhập Màu Sắc" name="mausac" id="mausac" value="@ViewBag.sp[0].mausac">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Giới Tính</label>
+
+                    <div class="col-sm-10">
+                        <input type="radio" id="male" name="gender" value="1" @((Convert.ToString(ViewBag.sp[0].gioitinh) == "đực") ? "checked" : " " )>
+                        <label for="male">Đực</label><br>
+                        <input type="radio" id="female" name="gender" value="0" @((Convert.ToString(ViewBag.sp[0].gioitinh) == "cái") ? "checked" : " " )>
+                        <label for="female">Cái</label><br>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tuổi</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Nhập Tuổi" name="tuoi" id="tuoi" value="@ViewBag.sp[0].tuoi">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tình trạng</label>
+                    <div class="col-sm-10">
+                        @if (Convert.ToString(ViewBag.sp[0].tinhtrang) == "Có hàng")
+                        {
+                            @Html.CheckBox("tinhtrang", true, new { @id = "tinhtrang" })
+                        }
+                        else
+                        {
+                            @Html.CheckBox("tinhtrang", false, new { @id = "tinhtrang" })
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tiêm VacXin</label>
+                    <div class="col-sm-10">
+                        @if (Convert.ToString(ViewBag.sp[0].tinhtrang) == "1")
+                        {
+                            @Html.CheckBox("tinhtrang", true, new { @id = "tinhtrang" })
+                        }
+                        else
+                        {
+                            @Html.CheckBox("tinhtrang", false, new { @id = "tinhtrang" })
+                        }
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tẩy giun</label>
+                    <div class="col-sm-10">
+                        @if (Convert.ToString(ViewBag.sp[0].tinhtrang) == "1")
+                        {
+                            @Html.CheckBox("tinhtrang", true, new { @id = "tinhtrang" })
+                        }
+                        else
+                        {
+                            @Html.CheckBox("tinhtrang", false, new { @id = "tinhtrang" })
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Xuất Xứ</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="xuatxu" id="xuatxu" value="@ViewBag.sp[0].xuatxu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Mô tả</label>
+                    <div class="col-sm-10">
+                        <textarea id="mota" name="mota">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Ảnh Hiển Thị(2 ảnh)</label>
+                    <div class="col-sm-10">
+                        <div id="imagelist1">
+                            @foreach (var item in ViewBag.sp)
+                            {
+                                if (item.loai == 0)
+                                {
+                                    <div style="float:left;"><img src="@item.url" width="100px"><a href="#" class="btn-delImg"><i class="fa fa-times"></i></a></div>
+                                }
+                            }
+                        </div>
+                        <a href="#" class="btn btn-theme" id="imgDFChoose">SELECT IMAGE</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Ảnh Chi Tiết</label>
+                    <div class="col-sm-10">
+                        <div id="imagelist2">
+                            @foreach (var item in ViewBag.sp)
+                            {
+                                if (item.loai == 1)
+                                {
+                                    <div style="float:left;"><img src="@item.url" width="100px"><a href="#" class="btn-delImg"><i class="fa fa-times"></i></a></div>
+                                }
+                            }
+                        </div>
+                        <a href="#" class="btn btn-theme" id="imgChooseDetail">SELECT IMAGE</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button id="saveSP" class="btn btn-primary" type="submit">Lưu</button>
+                        <a href="/admin/admin/SanPham" class="btn btn-primary">Thoát</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

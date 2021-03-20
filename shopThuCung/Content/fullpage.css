@@ -1,0 +1,29 @@
+@media screen and (max-width: 768px) {
+	.search{
+		position: fixed;
+		width: 100%;
+		z-index: 10;
+		top:0px;
+		background: #e6e6e6;
+	}
+	.banner{
+		margin-top: 70px;
+	}
+}
+
+.event_menu{
+	position: fixed;
+	top:0px;
+	width: 75%;
+	z-index: 10;
+	animation: menu 1s ease-out;
+}
+@keyframes menu{
+	from{
+		top:-40px;
+	}
+	to:{
+		top:0px;
+	}
+}
+

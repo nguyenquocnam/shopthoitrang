@@ -1,0 +1,56 @@
+﻿@model Shopthucung.Models.menuDF
+<div class="menu-mobie">
+
+    <button>
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    <div id=search-mobie>
+
+        <div class="search_txt_mb">
+            <div class="txt_search_mb">
+                <input type="text" name="" placeholder="Tìm kiếm ...." style="height:100%; width: 100%;">
+            </div>
+            <div class="btn_search_mb">
+                <button class="button"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+    <div id="mn-mb">
+        <ul>
+            <li>
+                MÈO CẢNH
+                <button><i class="fas fa-angle-down"></i></button>
+                <div class="list-mb">
+                    <ul>
+                        @foreach (var item in Model.list[1])
+                        {
+                            <li><a href="/Home/danh-sach-san-pham/@item.MaLoaiSP/@item.MaPL" title="">@item.TenPhanLoai.ToUpper()</a></li>
+                        }
+                    </ul>
+                </div>
+            </li>
+            <li>
+                CHÓ CẢNH<button><i class="fas fa-angle-down"></i></button>
+                <div class="list-mb">
+                    <ul>
+                        @foreach (var item in Model.list[0])
+                        {
+                            <li><a href="/Home/danh-sach-san-pham/@item.MaLoaiSP/@item.MaPL" title="">@item.TenPhanLoai.ToUpper()</a></li>
+                        }
+                    </ul>
+                </div>
+            </li>
+            <li>
+                PHỤ KIỆN<button><i class="fas fa-angle-down"></i></button>
+                <div class="list-mb">
+                    <ul>
+                        @foreach (var item in Model.list[2])
+                        {
+                            <li><a href="/Home/danh-sach-san-pham/@item.MaLoaiSP/@item.MaPL" title="">@item.TenPhanLoai.ToUpper()</a></li>
+                        }
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

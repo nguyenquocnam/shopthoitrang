@@ -1,0 +1,45 @@
+.news {
+	display: flex;
+	width: 70%;
+	border :1px solid gray;
+	margin-left: 5%;
+
+}
+
+.news1{
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.img-news{
+	background: orange;
+	overflow:hidden;
+	height: 200px;
+	width: 40%;
+	
+}
+.content-cut{
+	padding-top: 8%;
+	padding-left: 1%;
+	width: 60%;
+}
+
+#page li{
+	display: inline-block;
+	padding: 5px 10px; 
+	/*background: red;*/
+	border-radius: 20px;
+	border:2px solid orange;
+	cursor: pointer;
+	font-weight:  bold;
+	margin: auto 2px;
+}
+#page li:hover{
+	background: orange;
+	transition: 1s;
+}
+#page {
+	text-align: center;
+}
+#page-sl{
+	background: orange;
+}

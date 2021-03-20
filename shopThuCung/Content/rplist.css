@@ -1,0 +1,35 @@
+@media  screen and (max-width: 768px)
+{
+	
+	#list-cho{
+		margin-top: 70px;
+
+	}
+	#list-meo{
+		margin-top: 70px;
+
+	}
+	#list-pk{
+		margin-top: 70px;
+	}
+}
+
+
+@media  screen and (max-width: 428px)
+{
+	.list-sell .sp{
+		flex-basis: 45%;
+	}
+	#list-cho{
+		margin-top: 70px;
+
+	}
+	#list-meo{
+		margin-top: 70px;
+
+	}
+	#list-pk{
+		margin-top: 70px;
+	}
+	
+}

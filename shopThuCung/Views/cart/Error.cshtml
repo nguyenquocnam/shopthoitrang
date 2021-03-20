@@ -1,0 +1,16 @@
+﻿@using Shopthucung.Models
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Menu{
+    @{
+        @Html.Partial("MenuPartialView", (menuDF)(ViewBag.listMenu))
+    }
+
+}
+@section MenuMobie{
+    @Html.Partial("MenuMBPartialView", (menuDF)(ViewBag.listMenu))
+}
+<h1 style="text-align:center">Bạn đã đặt hàng thất bại</h1>
+

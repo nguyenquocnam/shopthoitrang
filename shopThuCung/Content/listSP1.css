@@ -1,0 +1,42 @@
+
+/*.list-full{
+	background: red;
+}*/
+.list-sell{
+	display: flex;
+	flex-wrap: wrap;
+	/*background: red;*/
+}
+.list-sell .sp{
+	flex-basis: 20%;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: none;
+	padding-bottom:20px;
+}
+	.list-sell .sp .anh-2 {
+		height:80%;
+	}
+.page li{
+	display: inline-block;
+	padding: 5px 10px; 
+	/*background: red;*/
+	border-radius: 20px;
+	border:2px solid orange;
+	cursor: pointer;
+	font-weight:  bold;
+	margin: auto 2px;
+}
+.page li:hover{
+	background: orange;
+	transition: 1s;
+}
+.page {
+	text-align: center;
+}
+.active{
+	background: orange;
+}

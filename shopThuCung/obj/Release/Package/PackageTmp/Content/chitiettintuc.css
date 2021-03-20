@@ -1,0 +1,11 @@
+#chitiettintuc>div{
+	border :1px solid gray;
+	padding: 20px;
+}
+#chitiettintuc>div div{
+	text-align: center;
+	margin:20px auto;
+}
+#chitiettintuc>div h2{
+	margin:20px auto;
+}

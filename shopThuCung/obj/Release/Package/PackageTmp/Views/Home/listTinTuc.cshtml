@@ -1,0 +1,47 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Shopthucung.Models.TinTuc>
+@using Shopthucung.Models
+@{
+    ViewBag.Title = "listTinTuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+    <link rel="stylesheet" type="text/css" href="\Content\tintuc.css">
+}
+@section scripts{
+    <script src="\Scripts\tintuc.js" type="text/javascript" charset="utf-8" async defer></script>
+}
+
+@section Menu{
+    @Html.Partial("MenuPartialView", (menuDF)(ViewBag.listMenu))
+}
+@section MenuMobie{
+    @Html.Partial("MenuMBPartialView", (menuDF)(ViewBag.listMenu))
+}
+<div id="content-tt">
+    <h3>Tin Tức</h3>
+    @foreach (var item in ViewBag.listTinTuc)
+    {
+        <div class="news1">
+            <a href="/Home/Tin-Tuc/@item.MaBaiViet" title="">
+                <div class="news">
+
+                    <div class="img-news">
+                        <img src="@item.anhmota" alt="" width="100%" height="100%">
+                    </div>
+                    <div class="content-cut">
+                        <h3>@item.TieuDe</h3>
+                        <p style="text-overflow:ellipsis;white-space: nowrap;overflow:hidden;">@item.motangan</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+
+    <div id="page">
+        <ul>
+            @Html.PagedListPager(Model, page => Url.Action("/Tin-Tuc/", new { Page }))
+        </ul>
+    </div>
+</div>
+

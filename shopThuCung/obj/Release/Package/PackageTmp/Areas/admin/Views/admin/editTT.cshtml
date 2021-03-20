@@ -1,0 +1,71 @@
+﻿@model List<Shopthucung.Models.PhanLoaiSP>
+@{
+    ViewBag.Title = "insertSP";
+    Layout = "~/Areas/admin/Views/Shared/layoutAdmin.cshtml";
+}
+
+@section script{
+    <script src="~/assets/ckeditor/ckeditor.js"></script>
+    <script src="~/assets/ckfinder/ckfinder.js"></script>
+    <script src="~/assets/jsAdmin/admiinEditTT.js"></script>
+    @{
+        
+        <script>
+            window.onload = function () {
+                CKEDITOR.instances['mota'].focus();
+                CKEDITOR.instances['mota'].insertHtml($('#testmota').val());
+            }
+        </script>
+    }
+}
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <h4 class="mb"><i class="fa fa-angle-right"></i>Thêm Tin Tức</h4>
+            <form class="form-horizontal style-form" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Mã Bài Viết</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Nhập mã bài viết" name="MaBaiViet" id="MaBaiViet" value="@ViewBag.tt.MaBaiViet" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Tiêu Đề</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Nhập Tên Sản Phẩm" name="TieuDe" id="TieuDe" value="@ViewBag.tt.TieuDe">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Mô tả ngắn</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="motangan" id="motangan" placeholder="Nhập mô tả ngắn" value="@ViewBag.tt.motangan">
+                        <input type="hidden" id="testmota" value="@ViewBag.tt.mota"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Mô tả</label>
+                    <div class="col-sm-10">
+                        <textarea id="mota" name="mota">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-sm-2 control-label">Ảnh Mô Tả(1 ảnh)</label>
+                    <div class="col-sm-10">
+                        <div id="imagelist1">
+                            <div style="float:left;"><img src="@ViewBag.tt.anhmota" width="100px"><a href="#" class="btn-delImg"><i class="fa fa-times"></i></a></div>
+                        </div>
+                        <a href="#" class="btn btn-theme" id="imgDFChoose">SELECT IMAGE</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button id="saveSP" class="btn btn-primary" type="submit">Thêm</button>
+                        <a href="/admin/admin/SanPham" class="btn btn-primary">Thoát</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyShopThuCungModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LoaiSP">
+    <Key>
+      <PropertyRef Name="MaLoaiSP" />
+    </Key>
+    <Property Name="MaLoaiSP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PhanLoaiSPs" Relationship="Self.FK_PhanLoaiSP_LoaiSP" FromRole="LoaiSP" ToRole="PhanLoaiSP" />
+  </EntityType>
+  <EntityType Name="PhanLoaiSP">
+    <Key>
+      <PropertyRef Name="MaPL" />
+    </Key>
+    <Property Name="MaPL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaLoaiSP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenPhanLoai" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiSP" Relationship="Self.FK_PhanLoaiSP_LoaiSP" FromRole="PhanLoaiSP" ToRole="LoaiSP" />
+    <NavigationProperty Name="SanPham" Relationship="Self.FK_SanPham_PhanLoaiSP" FromRole="PhanLoaiSP" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSp" />
+    </Key>
+    <Property Name="MaSp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaPL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mausac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gioitinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tuoi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tinhtrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="timvacxin" Type="Int32" />
+    <Property Name="taygiun" Type="Int32" />
+    <Property Name="xuatxu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ngaythem" Type="DateTime" Precision="0" />
+    <Property Name="hot" Type="Int32" />
+    <NavigationProperty Name="PhanLoaiSP" Relationship="Self.FK_SanPham_PhanLoaiSP" FromRole="SanPham" ToRole="PhanLoaiSP" />
+    <NavigationProperty Name="img_sp" Relationship="Self.FK_img_sp_SanPham" FromRole="SanPham" ToRole="img_sp" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="MaBaiViet" />
+    </Key>
+    <Property Name="MaBaiViet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ngaydang" Type="DateTime" Precision="0" />
+    <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="TaiKhoan" />
+    </Key>
+    <Property Name="TaiKhoan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="img_sp">
+    <Key>
+      <PropertyRef Name="MaIMG" />
+      <PropertyRef Name="loai" />
+    </Key>
+    <Property Name="MaIMG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaSp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="url" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="loai" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SanPham" Relationship="Self.FK_img_sp_SanPham" FromRole="img_sp" ToRole="SanPham" />
+  </EntityType>
+  <Association Name="FK_PhanLoaiSP_LoaiSP">
+    <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="1" />
+    <End Role="PhanLoaiSP" Type="Self.PhanLoaiSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSP">
+        <PropertyRef Name="MaLoaiSP" />
+      </Principal>
+      <Dependent Role="PhanLoaiSP">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_PhanLoaiSP">
+    <End Role="PhanLoaiSP" Type="Self.PhanLoaiSP" Multiplicity="1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PhanLoaiSP">
+        <PropertyRef Name="MaPL" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaSp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_img_sp_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1" />
+    <End Role="img_sp" Type="Self.img_sp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSp" />
+      </Principal>
+      <Dependent Role="img_sp">
+        <PropertyRef Name="MaSp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyShopThuCungEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LoaiSPs" EntityType="Self.LoaiSP" />
+    <EntitySet Name="PhanLoaiSPs" EntityType="Self.PhanLoaiSP" />
+    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="img_sp" EntityType="Self.img_sp" />
+    <AssociationSet Name="FK_PhanLoaiSP_LoaiSP" Association="Self.FK_PhanLoaiSP_LoaiSP">
+      <End Role="LoaiSP" EntitySet="LoaiSPs" />
+      <End Role="PhanLoaiSP" EntitySet="PhanLoaiSPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_PhanLoaiSP" Association="Self.FK_SanPham_PhanLoaiSP">
+      <End Role="PhanLoaiSP" EntitySet="PhanLoaiSPs" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_img_sp_SanPham" Association="Self.FK_img_sp_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="img_sp" EntitySet="img_sp" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

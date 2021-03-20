@@ -1,0 +1,32 @@
+﻿@using Shopthucung.Models
+@{
+    ViewBag.Title = "ChitietTinTuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/Content/chitiettintuc.css">
+}
+@section scripts{
+    <script src="\Scripts\tintuc.js" type="text/javascript" charset="utf-8" async defer></script>
+}
+@section Menu{
+    @Html.Partial("MenuPartialView", (menuDF)(ViewBag.listMenu))
+}
+@section MenuMobie{
+    @Html.Partial("MenuMBPartialView", (menuDF)(ViewBag.listMenu))
+}
+<div id="chitiettintuc">
+    <div>
+        <p style="text-align:right;">Ngày đăng :@{
+            DateTime i = DateTime.Parse(Convert.ToString(ViewBag.tinTuc.ngaydang));
+            @i.GetDateTimeFormats()[0]
+        }</p>
+        <h1>@ViewBag.tintuc.TieuDe</h1>
+        <p>@ViewBag.tintuc.motangan</p>
+        <br />
+        @Html.Raw(ViewBag.tinTuc.mota)
+    
+    </div>
+    
+</div>
+

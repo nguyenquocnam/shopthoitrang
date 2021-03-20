@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/page.css")
+    @Styles.Render("~/Content/fullpage.css")
+    @Styles.Render("~/Content/responsive.css")
+
+    @RenderSection("css", required: false)
+    <link rel="stylesheet" href="/fontawesome-free-5.13.0-web\css\all.css">
+    @Scripts.Render("~/Scripts/jquey-3.5.1.min.js")
+</head>
+<body>
+    @RenderSection("MenuMobie", required: false)
+    <div class="container">
+        <div class="search">
+            <div id="icon-mn-mb">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="logo">
+                <a href='@Url.Action("Index","Home")' title="">
+                    <img src="\img\thiet-ke-logo-thu-cung-22.gif" alt="" width="100%">
+                </a>
+            </div>
+            
+            <div class="search_txt">
+                <form action="/home/search" method="get">
+                    <div class="txt_search">
+                        <input type="text" name="tenSP" placeholder="Tìm kiếm ...." style="height:100%; width: 100%;">
+                    </div>
+                    <div class="btn-search">
+                        <button class="button" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+            
+            
+            @{ Html.RenderAction("headerCartView", "home");}
+
+
+            <div class="clear"></div>
+
+        </div>
+
+        @RenderSection("Menu", required: false)
+        <div class="clear"></div>
+        @RenderBody()
+        <div id="footer">
+            <div id="footer-top">
+                <div id="email">
+                    <div id="add-email">
+                        <img src="\img\icon-email.png" alt="" height="100%" " width= " 100%">
+                    </div>
+                    <div class="ip-email">
+                        <div class="txt_email">
+                            <input type="text" name="" placeholder="Email nhận tin" style="height:100%; width: 100%;">
+                        </div>
+                        <div class="btn-email">
+                            <button class="button">ĐĂNG KÝ!</button>
+                        </div>
+                    </div>
+                </div>x`
+                <div id="giao-hang">
+                    <div id="icon-ship">
+                        <img src="\img\icon-shipping.png" alt="" height="100%" " width= " 100%">
+                    </div>
+                    <div id="text-giaohang">
+                        <p>Giao hàng miễn phí tại TP.HCM, Hà Nội, Đà Nẵng Áp dụng cho đơn hàng từ 500.000đ trở lên</p>
+                    </div>
+                </div>
+                <div id="icon-bank">
+                    <div id="icon-ship">
+                        <img src="\img\logo_bank-atm.png" alt="" height="100%" " width= " 100%">
+                    </div>
+
+                </div>
+            </div>
+            <div id="footer-bottom">
+                <div id="thong-tin-lien-he">
+                    <h3>THÔNG TIN LIÊN HỆ</h3>
+                    <ul>
+                        <li>Địa chỉ: 606/121 đường Ba Tháng Hai, phường 14, quận 10, thành phố Hồ Chí Minh Chỉ đường</li>
+                        <li>Địa chỉ: Trang trại nhân giống Dogily Kennel 1 Hà Nội: 262 Vĩnh Hưng, Hai Bà Trưng, Hà Nội Chỉ đường</li>
+                        <li>Địa chỉ: Trang trại nhân giống Dogily Kennel 2: Ngõ 1, Xóm 2, thôn 3, Xã Vạn Phúc, huyện Thanh Trì, Hà Nội Chỉ đường</li>
+                        <li>Email: dogily.vn@gmail.com</li>
+                        <li>Hotline 1: 0916299911</li>
+                        <li>Hotline 2: 0965086079</li>
+                    </ul>
+                </div>
+                <div id="ve-chung-toi">
+                    <h3>VỀ CHÚNG TÔI</h3>
+                    <ul>
+
+                        <li>Giới thiệu</li>
+                        <li>Các chi nhánh</li>
+                        <li>Liên hệ</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="~/Scripts/jquey-3.5.1.min.js"></script>
+    @*@Scripts.Render("~/Scripts/fullpage.js")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

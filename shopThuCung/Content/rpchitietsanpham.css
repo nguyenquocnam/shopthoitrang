@@ -1,0 +1,40 @@
+@media  screen and (max-width: 768px)
+{
+	.ct-meo{
+		margin-top: 70px;
+	}
+	.ct-cho{
+		margin-top: 70px;
+	}
+	.ct-pk{
+		margin-top: 70px;
+	}
+}
+
+
+@media  screen and (max-width: 428px)
+{
+	.full-if{
+	display: block;
+	
+	}
+
+	.ct-img{
+		width: 100%;
+	
+	}
+	.ct-if{
+		width: 100%;
+		
+	}
+	.ct-meo{
+		margin-top: 70px;
+	}
+	.ct-cho{
+		margin-top: 70px;
+	}
+	.ct-pk{
+		margin-top: 70px;
+	}
+	
+}

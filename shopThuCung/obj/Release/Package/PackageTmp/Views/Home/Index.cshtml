@@ -1,0 +1,429 @@
+﻿@using Shopthucung.Models
+@{
+    ViewBag.Title = "Index";
+}
+@section scripts{
+    <script src="~/Scripts/js1.js" type="text/javascript" charset="utf-8" async defer></script>
+    <script src="~/Scripts/indexAjax.js" type="text/javascript" charset="utf-8" async defer></script>
+}
+@section Menu{
+    @{
+        @Html.Partial("MenuPartialView", (menuDF)(ViewBag.listMenu))
+    }
+
+}
+@section MenuMobie{
+    @Html.Partial("MenuMBPartialView", (menuDF)(ViewBag.listMenu))
+}
+
+<div class="banner">
+    <div class="show-bn">
+        <div id="slider">
+            <div class="bn-1 bn">
+                <img src="\img\slider\Slider-01.jpg" alt="anh-banner" width='100%' height='100%'>
+            </div>
+            <div class="bn-2 bn ">
+                <img src="\img\slider\Slider-02.jpg" alt="anh-banner" width="100%" height='100%'>
+            </div>
+            <div class="bn-3 bn">
+                <img src="\img\slider\Slider-03.jpg" alt="anh-banner" width="100%" height='100%'>
+            </div>
+
+        </div>
+        <div class="btn-prev btn-bn btn-pb">
+            <i class="fas fa-chevron-left"></i>
+
+
+        </div>
+        <div class="btn-next btn-bn btn-pb">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+
+        <div class="btn-cr">
+            <ul>
+                <li class="bn-cr"></li>
+                <li class="bn-cr"></li>
+                <li class="bn-cr"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chung-nhan">
+        <h3>CHẤT LƯỢNG CHO TẤT CẢ</h3>
+        <div id="box-cn">
+            <div class="cn-left cn">
+                <div class="top">
+                    <img src="\img\hotro\mien-phi-giao-hang.png" alt="anh">
+                    <h4>Miễn phí giao hàng</h4>
+                </div>
+                <div class="bottom">
+                    <img src="\img\hotro\ho-tro-247.png" alt="anh">
+                    <h4>Yên tâm về sức khỏe</h4>
+                </div>
+            </div>
+
+            <div class="cn-right cn">
+                <div class="top">
+                    <img src="\img\hotro\yen-tam-suc-khoe.png" alt="anh">
+                    <h4>Hỗ trợ liên tục 24/7</h4>
+                </div>
+                <div class="bottom">
+                    <img src="\img\hotro\bao-hanh-dai-han.png" alt="anh">
+                    <h4>Bảo hành dài hạn</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+<div id="sp-hot">
+    <div>
+
+    </div>
+    <div class='title'>
+        <h3>SẢN PHẨM BÁN CHẠY</h3>
+    </div>
+    <div class="list-sp">
+        <div class="box">
+
+            @{
+                String id = null;
+                foreach (var item in ViewBag.spHot)
+                {
+                    if (id != item.MaSp)
+                    {
+                        bool kt = false;
+                        <div class="sp">
+                            <a href="/Chi-Tiet-San-Pham/@item.MaPL/@item.MaSp" title="">
+                                <div class="img-sp">
+
+                                    @foreach (var item1 in ViewBag.spHot)
+                                    {
+                                        if (kt == false && item1.MaSp == item.MaSp)
+                                        {
+
+                                            <div class='anh-1'>
+                                                <img src="@item1.url" alt="" width="100%" height="100%">
+                                            </div>
+                                            kt = true;
+                                        }
+                                        else if (item1.MaSp == item.MaSp && kt == true)
+                                        {
+
+                                            <div class='anh-2'>
+                                                <img src="@item1.url" alt="" width="100%" height="100%">
+
+                                            </div>
+
+                                            break;
+                                        }
+
+                                    }
+
+
+
+                                </div>
+                                <div class='name-sp'>
+                                    <h4>@item.tenSP</h4>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    id = item.MaSp;
+
+                }
+            }
+
+
+        </div>
+        <div class="box-mb">
+            @{
+                id = null;
+                foreach (var item in ViewBag.spHot)
+                {
+                    if (id != item.MaSp)
+                    {
+                        bool kt = false;
+                        <div class="sp">
+                            <a href="/Chi-Tiet-San-Pham/@item.MaPL/@item.MaSp" title="">
+                                <div class="img-sp">
+
+                                    @foreach (var item1 in ViewBag.spHot)
+                                    {
+                                        if (kt == false && item1.MaSp == item.MaSp)
+                                        {
+
+                                            <div class='anh-1'>
+                                                <img src="@item1.url" alt="" width="100%" height="100%">
+                                            </div>
+                                            kt = true;
+                                        }
+                                        else if (item1.MaSp == item.MaSp && kt == true)
+                                        {
+
+                                            <div class='anh-2'>
+                                                <img src="@item1.url" alt="" width="100%" height="100%">
+
+                                            </div>
+
+                                            break;
+                                        }
+
+                                    }
+
+
+
+                                </div>
+                                <div class='name-sp'>
+                                    <h4>@item.tenSP</h4>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    id = item.MaSp;
+
+                }
+            }
+        </div>
+        <div class="btn-prev btn-list-sp btn-sp-prev btn-sp">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="btn-next btn-list-sp btn-sp-next btn-sp">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+
+    </div>
+
+</div>
+<div id="sp-cho" class="loai-sp">
+    <div class='title'>
+        <h3>CHÓ CẢNH</h3>
+    </div>
+    <div class="box-full">
+        <div class="menu-chon-sp">
+            <ul>
+                @foreach (var item in ViewBag.menuDog)
+                {
+                    <a href="#" class="link-active" data-id="@item.MaPL"><li>@item.TenPhanLoai.ToUpper()</li></a>
+                }
+            </ul>
+        </div>
+        <div class='list-sp'>
+            <div class="box">
+                @{
+
+                    foreach (var item in ViewBag.spDFDog)
+                    {
+                        if (id != item.MaSp)
+                        {
+                            bool kt = false;
+                            <div class="sp">
+                                <a href="/Chi-Tiet-San-Pham/@item.MaPL/@item.MaSp" title="">
+                                    <div class="img-sp">
+
+                                        @foreach (var item1 in ViewBag.spDFDog)
+                                        {
+                                            if (kt == false && item1.MaSp == item.MaSp)
+                                            {
+
+                                                <div class='anh-1'>
+                                                    <img src="@item1.url" alt="" width="100%" height="100%">
+                                                </div>
+                                                kt = true;
+                                            }
+                                            else if (item1.MaSp == item.MaSp && kt == true)
+                                            {
+
+                                                <div class='anh-2'>
+                                                    <img src="@item1.url" alt="" width="100%" height="100%">
+
+                                                </div>
+
+                                                break;
+                                            }
+
+                                        }
+
+
+
+                                    </div>
+                                    <div class='name-sp'>
+                                        <h5>@item.tenSP</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                        id = item.MaSp;
+
+                    }
+                }
+
+
+            </div>
+
+
+            <div class="btn-prev btn-list-sp btn-sp-prev btn-sp">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="btn-next btn-list-sp btn-sp-next btn-sp">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="sp-meo" class="loai-sp">
+    <div class='title'>
+        <h3>MÈO CẢNH</h3>
+    </div>
+    <div class="box-full">
+        <div class="menu-chon-sp">
+            <ul>
+                @foreach (var item in ViewBag.menuCat)
+                {
+                    <a href="#" class="link-active" data-id="@item.MaPL"><li>@item.TenPhanLoai.ToUpper()</li></a>
+                }
+            </ul>
+        </div>
+        <div class='list-sp'>
+            <div class="box">
+                @{
+
+                    foreach (var item in ViewBag.spDFCat)
+                    {
+                        if (id != item.MaSp)
+                        {
+                            bool kt = false;
+                            <div class="sp">
+                                <a href="/Chi-Tiet-San-Pham/@item.MaPL/@item.MaSp" title="">
+                                    <div class="img-sp">
+
+                                        @foreach (var item1 in ViewBag.spDFCat)
+                                        {
+                                            if (kt == false && item1.MaSp == item.MaSp)
+                                            {
+
+                                                <div class='anh-1'>
+                                                    <img src="@item1.url" alt="" width="100%" height="100%">
+                                                </div>
+                                                kt = true;
+                                            }
+                                            else if (item1.MaSp == item.MaSp && kt == true)
+                                            {
+
+                                                <div class='anh-2'>
+                                                    <img src="@item1.url" alt="" width="100%" height="100%">
+
+                                                </div>
+
+                                                break;
+                                            }
+
+                                        }
+
+
+
+                                    </div>
+                                    <div class='name-sp'>
+                                        <h5>@item.tenSP</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                        id = item.MaSp;
+
+                    }
+                }
+
+
+            </div>
+
+
+            <div class="btn-prev btn-list-sp btn-sp-prev btn-sp">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="btn-next btn-list-sp btn-sp-next btn-sp">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="pk" class="loai-sp">
+    <div class='title'>
+        <h3>PHỤ KIỆN</h3>
+    </div>
+    <div class="box-full">
+        <div class="menu-chon-sp">
+            <ul>
+                @foreach (var item in ViewBag.menuPK)
+                {
+                    <a href="#" class="link-active" data-id="@item.MaPL"><li>@item.TenPhanLoai.ToUpper()</li></a>
+                }
+            </ul>
+        </div>
+        <div class='list-sp'>
+            <div class="box">
+                @{
+
+                    foreach (var item in ViewBag.spDFPk)
+                    {
+                        if (id != item.MaSp)
+                        {
+                            bool kt = false;
+                            <div class="sp">
+                                <a href="/Chi-Tiet-San-Pham/@item.MaPL/@item.MaSp" title="">
+                                    <div class="img-sp">
+
+                                        @foreach (var item1 in ViewBag.spDFPk)
+                                        {
+                                            if (kt == false && item1.MaSp == item.MaSp)
+                                            {
+
+                                                <div class='anh-1'>
+                                                    <img src="@item1.url" alt="" width="100%" height="100%">
+                                                </div>
+                                                kt = true;
+                                            }
+                                            else if (item1.MaSp == item.MaSp && kt == true)
+                                            {
+
+                                                <div class='anh-2'>
+                                                    <img src="@item1.url" alt="" width="100%" height="100%">
+
+                                                </div>
+
+                                                break;
+                                            }
+
+                                        }
+
+
+
+                                    </div>
+                                    <div class='name-sp'>
+                                        <h5>@item.tenSP</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                        id = item.MaSp;
+
+                    }
+                }
+
+
+            </div>
+
+
+            <div class="btn-prev btn-list-sp btn-sp-prev btn-sp">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="btn-next btn-list-sp btn-sp-next btn-sp">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+</div>
+

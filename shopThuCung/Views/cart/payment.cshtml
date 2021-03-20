@@ -1,0 +1,84 @@
+﻿@using Shopthucung.Models
+@{
+    ViewBag.Title = "payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+}
+@section Menu{
+    @{
+        @Html.Partial("MenuPartialView", (menuDF)(ViewBag.listMenu))
+    }
+    
+}
+@section MenuMobie{
+    @Html.Partial("MenuMBPartialView", (menuDF)(ViewBag.listMenu))
+}
+@{
+    if (Session["CartSession"] != null)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <td>Mã Sản Phẩm</td>
+                    <td>Tên Sản Phẩm</td>
+                    <td>Ảnh Sản Phẩm</td>
+                    <td>Số Lượng</td>
+                    <td>Đơn Giá</td>
+                    <td>Thành Tiền</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.cart)
+                {
+                    <tr>
+                        <td>@item.product.MaSp</td>
+                        <td>@item.product.tenSP</td>
+                        <td><img src="@item.product.url" width="100px" height="100px" /></td>
+                        <td><input type="text" class="quantity" value="@item.Quantity" data-id="@item.product.MaSp" /></td>
+                        <td>@((item.product.price>0)? item.product.price:0)</td>
+                        <td>@(item.Quantity * ((item.product.price > 0) ? item.product.price : 0))</td>
+                        <td><a href="#" style="color:mediumvioletred" class="btnDelete" data-id="@item.product.MaSp"><i class="fas fa-times-circle"></i></a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    <form action="/cart/payment" method="post">
+        <div>
+            <label>Người nhận</label><br />
+            <input name="shipName" type="text" />
+        </div>
+        <div>
+            <label>Điện thoại</label><br />
+            <input name="phone" type="text" />
+        </div>
+        <div>
+            <label>Địa chỉ</label><br />
+            <input name="address" type="text" />
+        </div>
+        <div>
+            <label>Email</label><br />
+            <input name="email" type="text" />
+        </div>
+        <button type="submit">Đặt hàng</button>
+    </form>
+
+
+}
+
